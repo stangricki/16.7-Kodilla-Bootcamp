@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import style from './App.css';
 import Title from '../components/Title';
 import TodoList from '../components/TodoList';
+import TodoForm from '../components/TodoForm';
 
 class App extends React.Component {
     constructor(props) {
@@ -32,17 +33,25 @@ class App extends React.Component {
 
             ],
         };
+
+        this.addTodo = this.addTodo.bind(this);
+        this.removeTodo = this.removeTodo.bind(this);
+        this.updateValue = this.updateValue.bind(this);
+
     }
-    addTodo(val) {
+
+    addTodo() {
         const todo = {
-            text: val,
+            text: this.state.value,
             id: uuid.v4(),
         };
         const data = [...this.state.data, todo];
         this.setState({
-            data
+            data,
+            value: ""
         });
     }
+
     removeTodo(id) {
         const remainder = this.state.data.filter(todo => todo.id !== id);
         this.setState({
@@ -50,12 +59,19 @@ class App extends React.Component {
         });
     }
 
+    updateValue(newValue) {
+        this.setState({
+            value: newValue
+        });
+    }
+
     render() {
         return (
             <div className={style.TodoApp}>
                 <Title title="TODO!!!" />
+                <TodoForm add={this.addTodo} updateValue={this.updateValue} value={this.state.value} />
+                <TodoList list={this.state.data} remove={this.removeTodo}/> 
                 <p className={style.number}>Number of tasks on my list: {this.state.data.length}</p>
-                <TodoList list={this.state.data} />
 
             </div>
         );

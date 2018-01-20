@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+*{
+	/*outline: 1px red solid;*/
+}
+
+body {
+	margin: 0;
+	background-color: #294047;
+	font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+	color: #FFF;
+	margin: 0;
+	padding: 20px;
+}
+
 .TodoApp {
     color: #000;
     display: flex;
@@ -9,3 +27,4 @@
     width: 100vw;
     height: 100vh;
 }
+
