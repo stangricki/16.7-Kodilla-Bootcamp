@@ -4,7 +4,7 @@ import style from './TodoList.css';
 const TodoList = props => {
     const tasks = props.list.map((item) => {
         return (
-            <a href={'#'} onClick={() => item.remove(item.id)} key={item.id} className={style.task}>
+            <a href={'#'} onClick={() => props.remove(item.id)} key={item.id} className={style.task}>
                 {item.text}
             </a>
         )
